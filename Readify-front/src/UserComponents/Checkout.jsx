@@ -35,7 +35,7 @@ const Checkout = () => {
         billingAddress: billingAddress
       };
 
-      await axios.post(`${process.env.REACT_APP_API_URL}/orders/addOrder`, payload, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/orders/addOrder`, payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
