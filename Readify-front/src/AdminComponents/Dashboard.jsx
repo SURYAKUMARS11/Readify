@@ -15,8 +15,8 @@ const Dashboard = () => {
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
         const [statsRes, usersRes] = await Promise.all([
-          axios.get(`${process.env.REACT_APP_API_URL}/users/stats`, config),
-          axios.get(`${process.env.REACT_APP_API_URL}/users/all`, config)
+          axios.get(`${import.meta.env.VITE_API_URL}/users/stats`, config),
+          axios.get(`${import.meta.env.VITE_API_URL}/users/all`, config)
         ]);
 
         setStats(statsRes.data);

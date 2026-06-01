@@ -18,7 +18,7 @@ const AdminViewReviews = () => {
     const fetchReviews = async () => {
       try {
         const token = localStorage.getItem('token');
-        const url = `${process.env.REACT_APP_API_URL}/reviews/getAllReviews`;
+        const url = `${import.meta.env.VITE_API_URL}/reviews/getAllReviews`;
         const res = await axios.get(url, {
           headers: { Authorization: `Bearer ${token}` }
         });
