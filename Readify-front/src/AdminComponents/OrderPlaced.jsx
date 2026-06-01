@@ -12,7 +12,7 @@ const OrderPlaced = () => {
   const [viewingUser, setViewingUser] = useState(null);
   const [updatingOrderId, setUpdatingOrderId] = useState(null);
 
-  const BASE_URL = 'http://localhost:8080';
+  const BASE_URL = process.env.BASE_URL;
   const API_URL = `${process.env.REACT_APP_API_URL}/orders`;
   const [deletingOrderId, setDeletingOrderId] = useState(null);
   const [sortOrder, setSortOrder] = useState("desc");

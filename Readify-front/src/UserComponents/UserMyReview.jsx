@@ -9,7 +9,7 @@ const UserMyReview = () => {
   const [loading, setLoading] = useState(true);
 
   // const API_URL = 'http://localhost:8080/api/reviews';
-  const BASE_URL = 'http://localhost:8080';
+  const BASE_URL = process.env.BASE_URL;
 
   const fetchReviews = async () => {
     try {

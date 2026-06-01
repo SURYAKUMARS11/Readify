@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserViewBooks = () => {
 
-  const BASE_URL = 'http://localhost:8080';
+  const BASE_URL = process.env.BASE_URL;
 
   const { addToCart } = useCart();
   const [search, setSearch] = useState('');
