@@ -63,7 +63,7 @@ const Signup = () => {
           userRole: formData.role
         };
 
-        const url = `${process.env.REACT_APP_API_URL}/users/signup`;
+        const url = `${import.meta.env.VITE_API_URL}/users/signup`;
 
         const response = await axios.post(
           url, dataToSend);

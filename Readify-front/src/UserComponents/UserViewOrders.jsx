@@ -8,7 +8,7 @@ const UserOrderHistory = () => {
   const [loading, setLoading] = useState(true);
   const [viewingItems, setViewingItems] = useState(null); // Modal for items
 
-  const BASE_URL = process.env.BASE_URL;
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const API_URL = `${BASE_URL}/api/orders`;
 
   const fetchMyOrders = async () => {

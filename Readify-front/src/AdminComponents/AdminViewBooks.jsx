@@ -20,7 +20,7 @@ const AdminViewBooks = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/books/getAllBooks`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/books/getAllBooks`);
       setBooks(response.data);
     } catch (error) {
       console.error("Error fetching books", error);
@@ -41,7 +41,7 @@ const AdminViewBooks = () => {
   const confirmDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${process.env.REACT_APP_API_URL}/books/deleteBook/${showDeleteModal}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/books/deleteBook/${showDeleteModal}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBooks(books.filter(b => b._id !== showDeleteModal));

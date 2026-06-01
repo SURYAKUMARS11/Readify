@@ -44,7 +44,7 @@ const UserReview = () => {
         reviewText: text       // Check if your backend expects 'reviewText' or 'comment'
       };
       
-      await axios.post(`${process.env.REACT_APP_API_URL}/reviews/addReview`, payload, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/reviews/addReview`, payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

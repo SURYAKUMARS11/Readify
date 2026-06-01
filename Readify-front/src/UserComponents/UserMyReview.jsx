@@ -9,12 +9,12 @@ const UserMyReview = () => {
   const [loading, setLoading] = useState(true);
 
   // const API_URL = 'http://localhost:8080/api/reviews';
-  const BASE_URL = process.env.BASE_URL;
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const fetchReviews = async () => {
     try {
       const userId = localStorage.getItem('userId');
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/getReviewsByUser/${userId}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/reviews/getReviewsByUser/${userId}`);
       setReviews(response.data);
     } catch (error) {
       console.error("Error fetching reviews", error);
@@ -44,7 +44,7 @@ const UserMyReview = () => {
     if (result.isConfirmed) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`${process.env.REACT_APP_API_URL}/reviews/deleteReview/${id}`, {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/reviews/deleteReview/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setReviews(reviews.filter(r => r._id !== id));

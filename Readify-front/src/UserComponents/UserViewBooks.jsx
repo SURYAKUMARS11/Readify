@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserViewBooks = () => {
 
-  const BASE_URL = process.env.BASE_URL;
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const { addToCart } = useCart();
   const [search, setSearch] = useState('');
@@ -25,7 +25,7 @@ const UserViewBooks = () => {
 
   const navigate = useNavigate();
 
-  const API_URL = 'http://localhost:8080/api/books';
+  const API_URL = `${import.meta.env.VITE_API_URL}/books`;
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -54,7 +54,7 @@ const UserViewBooks = () => {
     setCurrentReviews([]);
     try {
       // Correct URL matching the new route
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/reviews/getReviewsByBook/${bookId}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/reviews/getReviewsByBook/${bookId}`);
       setCurrentReviews(res.data);
 
     } catch (error) {

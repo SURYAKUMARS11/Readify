@@ -35,7 +35,7 @@ const Login = () => {
     if (validate()) {
       setLoading(true);
       try {
-        const url = `${process.env.REACT_APP_API_URL}/users/login`;
+        const url = `${import.meta.env.VITE_API_URL}/users/login`;
         const response = await axios.post(url, { email, password });
         if (response.status === 200) {
           const { token, role, username, id } = response.data;

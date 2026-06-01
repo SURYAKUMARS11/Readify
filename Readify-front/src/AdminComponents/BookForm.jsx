@@ -30,7 +30,7 @@ const BookForm = ({ isEdit = false }) => {
       const fetchBook = async () => {
         try {
           const token = localStorage.getItem('token');
-          const res = await axios.get(`${process.env.REACT_APP_API_URL}/books/getBookById/${id}`, {
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/books/getBookById/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setFormData({
@@ -43,7 +43,7 @@ const BookForm = ({ isEdit = false }) => {
             coverImage: res.data.coverImage
           });
           if (res.data.coverImage) {
-            const baseUrl = process.env.REACT_APP_API_URL.replace('/api', '');
+            const baseUrl = import.meta.env.VITE_API_URL.replace('/api', '');
             const imageUrl = res.data.coverImage.startsWith('http')
               ? res.data.coverImage
               : `${baseUrl}${res.data.coverImage}`;
@@ -51,7 +51,7 @@ const BookForm = ({ isEdit = false }) => {
             setPreviewUrl(imageUrl);
           }
           console.log("Image Path from DB:", res.data.coverImage);
-          console.log("Final Preview URL:", `${process.env.REACT_APP_API_URL}${res.data.coverImage}`);
+          console.log("Final Preview URL:", `${import.meta.env.VITE_API_URL}${res.data.coverImage}`);
         } catch (err) {
           console.error("Failed to load book", err);
         }
@@ -117,9 +117,9 @@ const BookForm = ({ isEdit = false }) => {
       // const API_BASE = 'http://localhost:8080/api/books';
 
       if (isEdit) {
-        await axios.put(`${process.env.REACT_APP_API_URL}/books/updateBook/${id}`, data, config);
+        await axios.put(`${import.meta.env.VITE_API_URL}/books/updateBook/${id}`, data, config);
       } else {
-        await axios.post(`${process.env.REACT_APP_API_URL}/books/addBook`, data, config);
+        await axios.post(`${import.meta.env.VITE_API_URL}/books/addBook`, data, config);
       }
 
       setShowPopup(true); // Show older success modal
