@@ -20,9 +20,9 @@ const addBook = async (req, res) => {
     try {
         const bookData = { ...req.body };
         
-        // If a file was uploaded, save the filename/path to the database
+        // If a file was uploaded, save the Cloudinary URL to the database
         if (req.file) {
-            bookData.coverImage = `/uploads/${req.file.filename}`;
+            bookData.coverImage = req.file.path; // Cloudinary returns the full URL in path
         }
 
         const book = await Book.create(bookData);
@@ -34,15 +34,11 @@ const addBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
     try {
-        // Log this to your terminal to see if data is actually arriving
-        console.log("Body received:", req.body); 
-        console.log("File received:", req.file);
-
         const updateData = { ...req.body };
 
-        // If a new image was uploaded, update the path
+        // If a new image was uploaded, update the path with Cloudinary URL
         if (req.file) {
-            updateData.coverImage = `/uploads/${req.file.filename}`;
+            updateData.coverImage = req.file.path;
         }
 
         const book = await Book.findByIdAndUpdate(

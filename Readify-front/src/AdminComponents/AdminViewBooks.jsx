@@ -111,9 +111,7 @@ const AdminViewBooks = () => {
                       <img
                         src={
                           book.coverImage
-                            ? book.coverImage.startsWith("data:") || book.coverImage.startsWith("http")
-                              ? book.coverImage
-                              : `${BACKEND_URL}${book.coverImage}`
+                            ? book.coverImage
                             : "https://via.placeholder.com/150"
                         }
                         className="h-40 object-contain drop-shadow-sm"

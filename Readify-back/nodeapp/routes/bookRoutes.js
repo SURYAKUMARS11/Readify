@@ -2,18 +2,24 @@ const express = require("express")
 const { updateBook, addBook, getAllBooks, getBookById, deleteBook } = require("../controllers/bookController")
 const { validateToken } = require("../middleware/auth")
 const multer = require('multer');
-const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 const router = express.Router()
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Ensure this folder exists in your backend root
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'readify_books', // Cloudinary folder name
+        allowed_formats: ['jpg', 'png', 'jpeg'],
     },
-    filename: (req, file, cb) => {
-        // Create a unique filename: timestamp + original extension
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
 });
 
 const upload = multer({ storage: storage });

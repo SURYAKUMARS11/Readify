@@ -125,9 +125,7 @@ const UserViewBooks = () => {
                   <img
                     src={
                       book.coverImage
-                        ? book.coverImage.startsWith('data:')
-                          ? book.coverImage                       // Show if it's old Base64 data
-                          : `${BASE_URL}${book.coverImage}`       // Prepend URL if it's a file path (/uploads/...)
+                        ? book.coverImage // Cloudinary returns a full URL
                         : 'https://via.placeholder.com/150'       // Fallback
                     }
                     alt={book.title}

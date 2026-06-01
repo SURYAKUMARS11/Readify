@@ -185,7 +185,7 @@ const UserOrderHistory = () => {
               {viewingItems.map((item, i) => (
                 <div key={i} className="flex gap-4 items-center border-b pb-4 last:border-0">
                   <img
-                    src={`${BASE_URL}${item.book?.coverImage}`}
+                    src={item.book?.coverImage}
                     className="w-16 h-20 object-contain rounded border"
                     onError={(e) => e.target.src = 'https://via.placeholder.com/150'}
                     alt=""
