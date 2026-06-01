@@ -7,6 +7,6 @@ export default defineConfig({
     react(),
   ],
   define: {
-    'process.env.REACT_APP_API_URL': JSON.stringify('http://localhost:8080/api')
+    'process.env.REACT_APP_API_URL': JSON.stringify(process.env.REACT_APP_API_URL || 'http://localhost:8080/api')
   }
 })
